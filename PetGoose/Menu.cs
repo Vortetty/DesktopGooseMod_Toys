@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace PetGoose
 {
@@ -28,7 +29,7 @@ namespace PetGoose
             speed = 4;
             hoverTime = 0;
             exitTime = 0;
-            confirmTime = 1;
+            confirmTime = 0;
             Menu.items = items;
             brushGreen = new SolidBrush(Color.Green);
             brushWhite = new SolidBrush(Color.White);
@@ -44,7 +45,7 @@ namespace PetGoose
         {
             if (state == 0)
             {
-                if ((Input.mouseX < 70 && Input.mouseX >= 0) && (Input.mouseY < y + 70 && Input.mouseY > y - 20))
+                if ((Input.mouseX < 70 && Input.mouseX >= 0) && (Input.mouseY < y + 70 && Input.mouseY > y - 20) && Mouse.LeftButton == MouseButtonState.Pressed)
                     state = 1;
             }
             else if (state == 1)
@@ -60,7 +61,7 @@ namespace PetGoose
             }
             else if (state == 2)
             {
-                if ((Input.mouseX <= 50 && Input.mouseX >= 0) && (Input.mouseY <= y + 50 && Input.mouseY >= y))
+                if ((Input.mouseX <= 50 && Input.mouseX >= 0) && (Input.mouseY <= y + 50 && Input.mouseY >= y) && Mouse.LeftButton == MouseButtonState.Pressed)
                 {
                     if (hoverTime == 0)
                         hoverTime = Time.time;
@@ -195,7 +196,7 @@ namespace PetGoose
         }
         public static void render(Graphics g)
         {
-            if (state > 2 && state < 6)
+            /*if (state > 2 && state < 6)
             {
                 g.DrawImage(menu, x - 300, y);
                 for (int i = 0; i < items.Length; i++)
@@ -208,7 +209,7 @@ namespace PetGoose
                 g.FillRectangle(brushWhite, Input.mouseX - 10, Input.mouseY - 20, 10, LOADING_BAR_FULL - (loadingBar * LOADING_BAR_FULL));
                 g.FillRectangle(brushGreen, Input.mouseX - 10, Input.mouseY + 30 - (loadingBar * LOADING_BAR_FULL), 10, loadingBar * LOADING_BAR_FULL);
                 g.DrawRectangle(penBlack, Input.mouseX - 10, Input.mouseY - 20, 10, LOADING_BAR_FULL);
-            }
+            }*/
         }
     }
 }
